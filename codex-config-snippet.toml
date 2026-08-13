@@ -1,0 +1,16 @@
+# Add this snippet to ~/.codex/config.toml.
+# Replace /ABSOLUTE/PATH/TO/codex-mcp with wherever you cloned this repo.
+# Keep API keys out of config.toml; wrappers load them from:
+#   /ABSOLUTE/PATH/TO/codex-mcp/mcp-literature.env
+
+[mcp_servers.paper_search]
+command = "/ABSOLUTE/PATH/TO/codex-mcp/paper-search-mcp-wrapper.sh"
+args = []
+enabled = true
+startup_timeout_sec = 30
+
+[mcp_servers.zotero]
+command = "/ABSOLUTE/PATH/TO/codex-mcp/zotero-mcp-wrapper.sh"
+args = []
+enabled = true
+startup_timeout_sec = 30

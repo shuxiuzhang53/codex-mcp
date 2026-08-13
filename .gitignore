@@ -1,0 +1,20 @@
+# ---- Secrets: NEVER commit ----
+# Private credential file (Zotero API key, email). Only the .example is public.
+mcp-literature.env
+*.env
+!*.env.example
+*.key
+*.pem
+secrets.*
+
+# ---- Local virtualenvs / build junk ----
+.venv-paper-search/
+.venv*/
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# ---- Machine-local Codex config that may embed absolute paths ----
+# (keep the *.example / snippet templates, ignore any generated real config)
+config.local.toml
