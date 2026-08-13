@@ -37,6 +37,9 @@ Zotero Web API**. Translation happens entirely on the Windows side (pdf2zh), ind
 Codex. See [Zotero access modes](#zotero-access-modes) and
 [Translation chain](pdf2zh-translation/SETUP.md).
 
+> **Health check:** run `./doctor.sh` any time to verify the whole system in one shot —
+> WSL networking, Zotero local API, pdf2zh server, and Web API write access.
+
 ## Prerequisites
 
 - Codex CLI with MCP client enabled (`features.rmcp_client = true`)
@@ -160,6 +163,7 @@ Start with a small test collection:
 | `codex-literature.sh` | Launch Codex with MCP servers injected at runtime (no config write needed) |
 | `configure-codex-literature.sh` | Create env file + append MCP config when `~/.codex/config.toml` is writable |
 | `install-literature-mcp-tools.sh` | Install both MCP servers locally (mirror fallback) |
+| `doctor.sh` | One-shot health check of the whole system (networking, Zotero/pdf2zh servers, Web API write) |
 | `check-literature-mcp-ready.sh` | Readiness preflight (commands, creds, packages, DNS, local API, registration) |
 | `verify-literature-mcp.sh` | Local smoke checks for the two servers |
 | `set-zotero-web-api-env.sh` | Enter Zotero Web API credentials without exposing them in chat/history |
