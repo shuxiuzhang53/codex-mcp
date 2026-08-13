@@ -98,6 +98,36 @@ Toggle safely with the helper (only flips `ZOTERO_LOCAL`, never prints secrets):
 
 Recommended split: **import with `web`, read/search local library with `local`, translate on Windows.**
 
+## Semantic search (optional)
+
+Give Codex meaning-based search over your library (find papers by concept, cross-lingual —
+a Chinese query matches English papers). Uses zotero-mcp's semantic search with an
+OpenAI-compatible embedding API; **SiliconFlow + `BAAI/bge-m3`** is cheap, strong for zh+en,
+and needs no local `torch`.
+
+```bash
+# 1. Add the light deps (chromadb + openai; no sentence-transformers/torch)
+uv tool install zotero-mcp-server --with chromadb --with openai
+
+# 2. Put your embedding key in mcp-literature.env (gitignored)
+#    OPENAI_API_KEY="sk-..."          # e.g. a SiliconFlow key
+#    OPENAI_BASE_URL="https://api.siliconflow.cn/v1"
+
+# 3. Configure ~/.config/zotero-mcp/config.json:
+#    { "semantic_search": { "embedding_model": "openai",
+#        "embedding_config": { "model_name": "BAAI/bge-m3",
+#                              "base_url": "https://api.siliconflow.cn/v1" } } }
+#    (api_key is read from OPENAI_API_KEY, so it stays out of this file)
+
+# 4. Build the index (re-run after adding papers)
+set -a; source mcp-literature.env; set +a
+zotero-mcp update-db
+zotero-mcp db-status        # verify: document count + embedding model
+```
+
+Then Codex can semantic-search the library through the `zotero` MCP server. The reranker stays
+off (it would pull `torch`); embedding-only ranking is enough.
+
 ## WSL2 → Windows networking (for local mode)
 
 By default WSL2 uses NAT and cannot reach Windows `localhost` services (Zotero `23119`,
