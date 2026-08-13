@@ -171,6 +171,7 @@ Start with a small test collection:
 | `codex-config-snippet*.toml` | MCP config blocks to paste into `~/.codex/config.toml` |
 | `mcp-literature.env.example` | Credential template (copy to `mcp-literature.env`, kept private) |
 | `translate-and-attach.sh` | One-shot: ensure server → translate → attach back to Zotero |
+| `batch-translate.sh` | Batch-translate a whole collection/tag (discover → translate → attach, idempotent) |
 | `pdf2zh-translation/` | EN→ZH translation chain: setup guide + Actions & Tags script |
 | `docs/` | Chinese walkthrough & progress log |
 

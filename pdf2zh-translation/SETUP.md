@@ -29,6 +29,16 @@ attach-to-zotero.sh  经 Zotero Web API 把译本挂回父条目(本地 API 只�
 # 内部依次:start-pdf2zh → translate（等待译本产出）→ attach-to-zotero
 ```
 
+**批量(整个 collection / 标签):**
+
+```bash
+DRY_RUN=1 ./batch-translate.sh collection "综述-RAG" dual   # 先看会翻哪些(不真翻)
+./batch-translate.sh collection "综述-RAG" dual             # 逐篇翻译并挂回
+./batch-translate.sh tag "to-translate" dual               # 或按标签
+```
+自动发现条目 + 各自源 PDF,带进度、幂等跳过(已有译本/无源 PDF 自动跳)、失败续跑。
+需要 `ZOTERO_DATA_DIR`(默认 `/mnt/c/Users/$USER/Zotero`)指向你的 Zotero 数据目录。
+
 **或分三步(便于调试/自定义):**
 
 ```bash
